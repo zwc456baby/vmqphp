@@ -283,7 +283,7 @@ class Index
 
         if ($isHtml == 1) {
 
-            echo "<script>window.location.href = 'payPage/pay.html?orderId=" . $orderId . "'</script>";
+            echo "<script>window.location.href = '/payPage/pay.html?orderId=" . $orderId . "'</script>";
 
         } else {
             $time = Db::name("setting")->where("vkey", "close")->find();
@@ -549,7 +549,7 @@ class Index
     public function closeEndOrder(){
         $res = Db::name("setting")->where("vkey","lastheart")->find();
         $lastheart = $res['vvalue'];
-        if ((time()-$lastheart)>60){
+        if ((time()-$lastheart)>3600){
             Db::name("setting")->where("vkey","jkstate")->update(array("vvalue"=>0));
         }
 
